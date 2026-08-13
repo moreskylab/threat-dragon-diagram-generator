@@ -39,3 +39,15 @@ def test_cli_custom_base_url_and_model():
     ])
     assert args.model == "llama3"
     assert args.base_url == "http://localhost:11434/v1"
+
+
+def test_cli_model_from_env(monkeypatch):
+    import os
+    parser = build_parser()
+    args = parser.parse_args(["diagram/example/secure-cart.json"])
+    assert args.model is None
+
+    monkeypatch.setenv("OPENAI_MODEL", "google/gemini-3.1-flash-lite")
+    model = args.model or os.getenv("OPENAI_MODEL") or os.getenv("MODEL") or "gpt-4o-mini"
+    assert model == "google/gemini-3.1-flash-lite"
+

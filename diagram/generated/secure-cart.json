@@ -1,0 +1,1151 @@
+{
+  "version": "2.6.2",
+  "summary": {
+    "title": "SecureCart E-Commerce Platform",
+    "owner": "Security & Cloud Engineering Team",
+    "description": "Threat model for SecureCart web store, payment gateway, and order database.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "SecureCart E-Commerce Platform (STRIDE)",
+        "diagramType": "STRIDE",
+        "placeholder": "SecureCart E-Commerce Platform Architecture Diagram",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [
+          {
+            "id": "545688d0-15bb-48aa-adae-ab4c2be6334f",
+            "shape": "trust-boundary-box",
+            "position": {
+              "x": 310.0,
+              "y": 60.0
+            },
+            "size": {
+              "width": 470.0,
+              "height": 540.0
+            },
+            "attrs": {
+              "text": {
+                "text": "Corporate Cloud DMZ & Private VPC"
+              },
+              "body": {
+                "stroke": "#ff3333",
+                "strokeDasharray": "5 5",
+                "fill": "transparent"
+              }
+            },
+            "visible": true,
+            "data": {
+              "name": "Corporate Cloud DMZ & Private VPC",
+              "description": "Secured internal network perimeter protected by WAF and Firewalls",
+              "threats": []
+            }
+          },
+          {
+            "id": "f5383050-d8e9-42d6-855e-c10b58c6f8ba",
+            "shape": "actor",
+            "position": {
+              "x": 100.0,
+              "y": 100.0
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Customer"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5
+              }
+            },
+            "visible": true,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "data": {
+              "name": "Customer",
+              "description": "End-user accessing the web store via browser or mobile app",
+              "providesAuthentication": true,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "e53075ab-3f57-4194-a7f0-bb0dd315205f",
+            "shape": "actor",
+            "position": {
+              "x": 100.0,
+              "y": 220.0
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "System Administrator"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5
+              }
+            },
+            "visible": true,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "data": {
+              "name": "System Administrator",
+              "description": "Privileged user managing backend inventory and configurations",
+              "providesAuthentication": true,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "181fa4c8-1dfa-4ab7-a57d-08ccc045d388",
+            "shape": "process",
+            "position": {
+              "x": 350.0,
+              "y": 100.0
+            },
+            "size": {
+              "width": 100,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Web Application"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5
+              }
+            },
+            "visible": true,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "data": {
+              "name": "Web Application",
+              "description": "Frontend Node.js / React web store server",
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "d58b400b-3829-47d5-9a45-6c3125a12d98",
+            "shape": "process",
+            "position": {
+              "x": 350.0,
+              "y": 220.0
+            },
+            "size": {
+              "width": 100,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "API Gateway"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5
+              }
+            },
+            "visible": true,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "data": {
+              "name": "API Gateway",
+              "description": "Reverse proxy and authentication gateway",
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "d1f497dc-f2b6-4d59-a4cd-29e778514eb1",
+            "shape": "process",
+            "position": {
+              "x": 350.0,
+              "y": 340.0
+            },
+            "size": {
+              "width": 100,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Order Processing Service"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5
+              }
+            },
+            "visible": true,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "data": {
+              "name": "Order Processing Service",
+              "description": "Backend microservice handling orders, checkout, and inventory",
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "c92fc498-63ea-406c-9b83-e2dd499c33f7",
+            "shape": "process",
+            "position": {
+              "x": 350.0,
+              "y": 460.0
+            },
+            "size": {
+              "width": 100,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "External Payment Gateway"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5
+              }
+            },
+            "visible": true,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "data": {
+              "name": "External Payment Gateway",
+              "description": "Third-party PCI-DSS compliant payment provider (e.g. Stripe)",
+              "outOfScope": true,
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "85a199e2-9cd0-438d-960e-7d18bdd5ada9",
+            "shape": "store",
+            "position": {
+              "x": 600.0,
+              "y": 100.0
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "User Credentials DB"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5
+              }
+            },
+            "visible": true,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "data": {
+              "name": "User Credentials DB",
+              "description": "PostgreSQL storing user credentials, hashed passwords, and profile data",
+              "isALog": false,
+              "storesCredentials": true,
+              "isEncrypted": true,
+              "isSigned": false,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "af12850c-a39a-4bb8-85f9-ac9e95fb9bf6",
+            "shape": "store",
+            "position": {
+              "x": 600.0,
+              "y": 220.0
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Orders & Transactions DB"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5
+              }
+            },
+            "visible": true,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "data": {
+              "name": "Orders & Transactions DB",
+              "description": "Database storing customer orders and transaction history",
+              "isALog": false,
+              "storesCredentials": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "731fe1ee-4781-49a7-9e1a-da4b65c74067",
+            "shape": "store",
+            "position": {
+              "x": 600.0,
+              "y": 340.0
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Security Audit Logs"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5
+              }
+            },
+            "visible": true,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "data": {
+              "name": "Security Audit Logs",
+              "description": "Append-only centralized log store (SIEM / CloudWatch)",
+              "isALog": true,
+              "storesCredentials": false,
+              "isEncrypted": false,
+              "isSigned": true,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "5df3bb6c-7a67-440c-bf1d-eafad1ce011f",
+            "shape": "flow",
+            "source": {
+              "cell": "f5383050-d8e9-42d6-855e-c10b58c6f8ba",
+              "port": "right"
+            },
+            "target": {
+              "cell": "181fa4c8-1dfa-4ab7-a57d-08ccc045d388",
+              "port": "left"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "text": {
+                    "text": "Customer Web Traffic"
+                  }
+                }
+              }
+            ],
+            "visible": true,
+            "data": {
+              "name": "Customer Web Traffic",
+              "description": "HTTPS traffic for browsing catalog and shopping cart",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "protocol": "HTTPS/TLS 1.3",
+              "isPublicNetwork": true,
+              "threats": []
+            }
+          },
+          {
+            "id": "b9889388-c5f3-4551-91bb-f8c71d5e2da4",
+            "shape": "flow",
+            "source": {
+              "cell": "e53075ab-3f57-4194-a7f0-bb0dd315205f",
+              "port": "right"
+            },
+            "target": {
+              "cell": "d58b400b-3829-47d5-9a45-6c3125a12d98",
+              "port": "left"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "text": {
+                    "text": "Admin Management Portal"
+                  }
+                }
+              }
+            ],
+            "visible": true,
+            "data": {
+              "name": "Admin Management Portal",
+              "description": "MFA authenticated administrative access",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "protocol": "HTTPS/mTLS",
+              "isPublicNetwork": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "04a10a24-359d-41b0-862e-9c01b9a3219d",
+            "shape": "flow",
+            "source": {
+              "cell": "181fa4c8-1dfa-4ab7-a57d-08ccc045d388",
+              "port": "right"
+            },
+            "target": {
+              "cell": "d58b400b-3829-47d5-9a45-6c3125a12d98",
+              "port": "left"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "text": {
+                    "text": "Internal API Calls"
+                  }
+                }
+              }
+            ],
+            "visible": true,
+            "data": {
+              "name": "Internal API Calls",
+              "description": "REST API requests forwarded from web application",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "protocol": "gRPC / TLS",
+              "isPublicNetwork": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "dd7e7a30-074c-426f-83a8-bc154e0c97eb",
+            "shape": "flow",
+            "source": {
+              "cell": "d58b400b-3829-47d5-9a45-6c3125a12d98",
+              "port": "right"
+            },
+            "target": {
+              "cell": "d1f497dc-f2b6-4d59-a4cd-29e778514eb1",
+              "port": "left"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "text": {
+                    "text": "Dispatch Order Requests"
+                  }
+                }
+              }
+            ],
+            "visible": true,
+            "data": {
+              "name": "Dispatch Order Requests",
+              "description": "Routed verified requests to order service",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "protocol": "gRPC",
+              "isPublicNetwork": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "3252bd80-b34b-4c79-879d-55a015bc3bcd",
+            "shape": "flow",
+            "source": {
+              "cell": "d58b400b-3829-47d5-9a45-6c3125a12d98",
+              "port": "right"
+            },
+            "target": {
+              "cell": "85a199e2-9cd0-438d-960e-7d18bdd5ada9",
+              "port": "left"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "text": {
+                    "text": "Verify Auth Tokens"
+                  }
+                }
+              }
+            ],
+            "visible": true,
+            "data": {
+              "name": "Verify Auth Tokens",
+              "description": "Query user credentials and validate session tokens",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "protocol": "PostgreSQL/TLS",
+              "isPublicNetwork": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "8c2cf2d3-54c1-4da6-b41f-2296f0ddc075",
+            "shape": "flow",
+            "source": {
+              "cell": "d1f497dc-f2b6-4d59-a4cd-29e778514eb1",
+              "port": "right"
+            },
+            "target": {
+              "cell": "af12850c-a39a-4bb8-85f9-ac9e95fb9bf6",
+              "port": "left"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "text": {
+                    "text": "Persist Order Records"
+                  }
+                }
+              }
+            ],
+            "visible": true,
+            "data": {
+              "name": "Persist Order Records",
+              "description": "Save customer order transactions",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "protocol": "PostgreSQL/TLS",
+              "isPublicNetwork": false,
+              "threats": []
+            }
+          },
+          {
+            "id": "770e9eec-65a8-4771-8597-ccd54d87b88e",
+            "shape": "flow",
+            "source": {
+              "cell": "d1f497dc-f2b6-4d59-a4cd-29e778514eb1",
+              "port": "right"
+            },
+            "target": {
+              "cell": "c92fc498-63ea-406c-9b83-e2dd499c33f7",
+              "port": "left"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "text": {
+                    "text": "Process Credit Card Payment"
+                  }
+                }
+              }
+            ],
+            "visible": true,
+            "data": {
+              "name": "Process Credit Card Payment",
+              "description": "Tokenized payment authorization call",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "protocol": "HTTPS/REST",
+              "isPublicNetwork": true,
+              "threats": []
+            }
+          },
+          {
+            "id": "cea909d8-e634-41a1-86c0-43b14f08861e",
+            "shape": "flow",
+            "source": {
+              "cell": "d58b400b-3829-47d5-9a45-6c3125a12d98",
+              "port": "right"
+            },
+            "target": {
+              "cell": "731fe1ee-4781-49a7-9e1a-da4b65c74067",
+              "port": "left"
+            },
+            "labels": [
+              {
+                "attrs": {
+                  "text": {
+                    "text": "Stream Audit Events"
+                  }
+                }
+              }
+            ],
+            "visible": true,
+            "data": {
+              "name": "Stream Audit Events",
+              "description": "Write access and security event logs",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "protocol": "Syslog/TLS",
+              "isPublicNetwork": false,
+              "threats": []
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

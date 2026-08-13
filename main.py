@@ -37,8 +37,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--model",
         "-m",
-        default="gpt-4o-mini",
-        help="LLM model name (default: gpt-4o-mini)",
+        default=None,
+        help="LLM model name (default: OPENAI_MODEL env var or 'gpt-4o-mini')",
     )
     parser.add_argument(
         "--base-url",
@@ -124,9 +124,10 @@ def main() -> None:
             print(f"[INFO] Prompt saved to {args.output}")
         return
 
-    # Check for API Key
+    # Check for API Key, Base URL, and Model
     openai_key = args.api_key or os.getenv("OPENAI_API_KEY") or os.getenv("OPENAI_KEY")
     base_url = args.base_url or os.getenv("OPENAI_BASE_URL")
+    model = args.model or os.getenv("OPENAI_MODEL") or os.getenv("MODEL") or "gpt-4o-mini"
 
     # If base_url is set (e.g. local Ollama), API key can default to dummy value if omitted
     if not openai_key:
@@ -138,14 +139,14 @@ def main() -> None:
             sys.exit(1)
 
     if args.verbose:
-        print(f"[INFO] Using model: {args.model}")
+        print(f"[INFO] Using model: {model}")
         if base_url:
             print(f"[INFO] Using custom base URL: {base_url}")
 
     print("\nSending diagram analysis to LLM for threat modeling...")
     handler = OpenAIHandler(
         api_key=openai_key,
-        ai_model=args.model,
+        ai_model=model,
         base_url=base_url,
         temperature=args.temperature,
     )

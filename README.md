@@ -54,13 +54,16 @@ OPENAI_MODEL=gpt-4o-mini # or google/gemini-3.1-flash-lite, llama3, etc.
 
 You can generate both an **OWASP Threat Dragon JSON file** and an **Architecture Diagram PNG** directly from Python or using the `generate.py` CLI tool:
 
-### Using the CLI Generator
+### Example: SecureCart E-Commerce Architecture Diagram
 ```bash
-# Generate SecureCart E-Commerce model (JSON + PNG)
 uv run generate.py -t ecommerce -j diagram/generated/secure-cart.json -p diagram/generated/secure-cart.png
+```
 
-# Generate Cloud Microservices template
-uv run generate.py -t microservices -j diagram/generated/microservices.json
+![SecureCart Architecture Diagram](diagram/generated/secure-cart.png)
+
+### Generate Cloud Microservices Template
+```bash
+uv run generate.py -t microservices -j diagram/generated/microservices.json -p diagram/generated/microservices.png
 ```
 
 ### Defining Models Programmatically in Python

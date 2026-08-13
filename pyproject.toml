@@ -1,0 +1,19 @@
+[project]
+name = "threat-dragon-diagram-generator"
+version = "0.1.0"
+description = "Automated threat modeling using LLMs and OWASP Threat Dragon diagrams"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=1.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+dragon-gpt = "main:main"
+threat-dragon-generator = "main:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+]

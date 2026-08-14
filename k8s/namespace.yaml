@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dragon-gpt
+  labels:
+    app.kubernetes.io/name: dragon-gpt
+    app.kubernetes.io/part-of: devsecops-platform

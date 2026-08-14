@@ -1,0 +1,64 @@
+services:
+  # Dragon-GPT Cloud Native Service
+  dragon-gpt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dragon-gpt-app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=production
+      - HOST=0.0.0.0
+      - PORT=8000
+      - LOG_LEVEL=info
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/healthz"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - dragon-network
+
+  # Prometheus Telemetry Collector
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    container_name: dragon-gpt-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+    depends_on:
+      - dragon-gpt
+    networks:
+      - dragon-network
+
+  # Optional Local LLM (Ollama)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: dragon-gpt-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    profiles:
+      - local-llm
+    networks:
+      - dragon-network
+
+networks:
+  dragon-network:
+    driver: bridge
+
+volumes:
+  ollama-models:

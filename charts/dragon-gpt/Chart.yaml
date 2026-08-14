@@ -1,0 +1,18 @@
+apiVersion: v2
+name: dragon-gpt
+description: Cloud-Native OWASP Threat Dragon & AI Threat Modeling Platform Helm Chart
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - security
+  - threat-modeling
+  - owasp
+  - threat-dragon
+  - devsecops
+  - ai
+home: https://github.com/moreskylab/threat-dragon-diagram-generator
+sources:
+  - https://github.com/moreskylab/threat-dragon-diagram-generator
+maintainers:
+  - name: DevSecOps Team

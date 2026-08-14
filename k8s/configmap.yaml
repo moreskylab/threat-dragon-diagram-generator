@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dragon-gpt-config
+  namespace: dragon-gpt
+  labels:
+    app.kubernetes.io/name: dragon-gpt
+    app.kubernetes.io/component: api
+data:
+  ENV: "production"
+  HOST: "0.0.0.0"
+  PORT: "8000"
+  LOG_LEVEL: "info"
+  OPENAI_MODEL: "gpt-4o-mini"
+  OPENAI_BASE_URL: ""
+  ENABLE_METRICS: "true"

@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "dragon-gpt"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets: ["dragon-gpt:8000"]
+        labels:
+          app: "dragon-gpt"
+          env: "production"

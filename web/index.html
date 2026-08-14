@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dragon-GPT Cloud Studio 🐉 | Cloud Native Threat Modeling</title>
+  <meta name="description" content="Cloud-native automated threat modeling platform connecting OWASP Threat Dragon, Architecture Diagrams as Code, and Generative AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <!-- Markdown parser for threat model reports -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="dark-theme">
+  <!-- Navigation Header -->
+  <header class="app-header">
+    <div class="brand-container">
+      <div class="logo-badge">🐉</div>
+      <div class="brand-titles">
+        <h1 class="brand-title">Dragon-GPT <span class="badge-cloud">CLOUD NATIVE</span></h1>
+        <p class="brand-subtitle">OWASP Threat Dragon & AI Threat Modeling Platform</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="health-pill" id="healthPill">
+        <span class="pulse-dot"></span>
+        <span id="healthStatusText">Connecting...</span>
+      </div>
+      <a href="/docs" target="_blank" class="btn btn-secondary btn-sm">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        Swagger API
+      </a>
+      <a href="/metrics" target="_blank" class="btn btn-secondary btn-sm">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        Metrics
+      </a>
+      <button class="btn btn-primary btn-sm" id="btnOpenSettings">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        AI Config
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container Layout -->
+  <main class="studio-container">
+    <!-- Left Sidebar: Templates, Upload & Builder -->
+    <aside class="sidebar-panel">
+      <!-- Templates Section -->
+      <section class="panel-card">
+        <div class="card-header">
+          <h2>Architecture Templates</h2>
+          <span class="badge">Pre-built</span>
+        </div>
+        <p class="panel-desc">Select a cloud-native reference architecture:</p>
+        <div class="template-grid" id="templateList">
+          <div class="skeleton-loader">Loading templates...</div>
+        </div>
+      </section>
+
+      <!-- Custom Upload Section -->
+      <section class="panel-card">
+        <div class="card-header">
+          <h2>Upload Threat Model</h2>
+        </div>
+        <div class="drop-zone" id="dropZone">
+          <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          <p>Drag & Drop <code>.json</code> or click to browse</p>
+          <input type="file" id="fileUploadInput" accept=".json" class="file-input">
+        </div>
+      </section>
+
+      <!-- Action Trigger Section -->
+      <section class="panel-card action-card">
+        <div class="card-header">
+          <h2>Generate Threat Model</h2>
+        </div>
+        <div class="form-group">
+          <label for="methodologySelect">Threat Methodology:</label>
+          <select id="methodologySelect" class="form-control">
+            <option value="STRIDE" selected>STRIDE (Spoofing, Tampering, Repudiation...)</option>
+            <option value="LINDDUN">LINDDUN (Privacy Threat Modeling)</option>
+            <option value="CIA">CIA Triad (Confidentiality, Integrity, Availability)</option>
+          </select>
+        </div>
+
+        <div class="action-buttons">
+          <button id="btnInspectPrompt" class="btn btn-secondary btn-block">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            Inspect Prompt (Dry-Run)
+          </button>
+          <button id="btnRunThreatModel" class="btn btn-accent btn-block btn-lg">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Generate AI Threat Report
+          </button>
+        </div>
+      </section>
+    </aside>
+
+    <!-- Main Workspace Content -->
+    <section class="workspace-panel">
+      <!-- Tabs Bar -->
+      <div class="tabs-header">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="tabDiagram">
+            <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            Architecture Diagram
+          </button>
+          <button class="tab-btn" data-tab="tabThreatModel">
+            <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            AI Threat Report
+          </button>
+          <button class="tab-btn" data-tab="tabPrompt">
+            <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+            Prompt Inspector
+          </button>
+          <button class="tab-btn" data-tab="tabJson">
+            <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            Threat Dragon JSON
+          </button>
+        </div>
+        <div class="workspace-actions">
+          <button id="btnDownloadJson" class="btn btn-secondary btn-sm" title="Download Threat Dragon JSON">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export JSON
+          </button>
+          <button id="btnDownloadSvg" class="btn btn-secondary btn-sm" title="Download Diagram SVG">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export SVG
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab 1: Architecture Diagram -->
+      <div class="tab-content active" id="tabDiagram">
+        <div class="diagram-viewer-container" id="diagramViewer">
+          <div class="empty-state">
+            <p>Select a template or upload an OWASP Threat Dragon JSON file.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: AI Threat Report -->
+      <div class="tab-content" id="tabThreatModel">
+        <div class="report-header-bar" id="reportHeaderBar" style="display: none;">
+          <div class="report-meta">
+            <span class="report-badge" id="reportModelBadge">Model: gpt-4o-mini</span>
+            <span class="report-badge" id="reportTimeBadge">Time: 2.1s</span>
+          </div>
+          <button id="btnDownloadReport" class="btn btn-secondary btn-sm">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Download Markdown (.md)
+          </button>
+        </div>
+        <div class="report-viewer markdown-body" id="reportViewer">
+          <div class="empty-state">
+            <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <h3>No Threat Report Generated Yet</h3>
+            <p>Click "Generate AI Threat Report" or "Inspect Prompt" to analyze the active architecture.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Prompt Inspector -->
+      <div class="tab-content" id="tabPrompt">
+        <div class="prompt-meta-bar" id="promptMetaBar" style="display: none;">
+          <span class="badge" id="promptElementsBadge">0 Elements</span>
+          <span class="badge" id="promptFlowsBadge">0 Data Flows</span>
+          <button id="btnCopyPrompt" class="btn btn-secondary btn-sm">Copy Prompt</button>
+        </div>
+        <div class="prompt-viewer">
+          <pre><code id="promptCodeBlock">Click "Inspect Prompt (Dry-Run)" on the sidebar to view the extracted LLM threat prompt.</code></pre>
+        </div>
+      </div>
+
+      <!-- Tab 4: Threat Dragon JSON -->
+      <div class="tab-content" id="tabJson">
+        <div class="json-meta-bar">
+          <span>OWASP Threat Dragon v2 Compatible JSON</span>
+          <button id="btnCopyJson" class="btn btn-secondary btn-sm">Copy JSON</button>
+        </div>
+        <div class="json-editor-container">
+          <textarea id="jsonEditor" spellcheck="false" placeholder="Threat Dragon JSON content will appear here..."></textarea>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- AI Configuration Modal -->
+  <div class="modal-backdrop" id="settingsModal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>AI & LLM Settings</h3>
+        <button class="modal-close" id="btnCloseSettings">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="cfgApiKey">API Key (OpenAI / Compatible):</label>
+          <input type="password" id="cfgApiKey" class="form-control" placeholder="sk-... (Leave blank if set in server env)">
+          <small class="form-help">Your API key is sent directly to the Dragon-GPT backend for generation and never stored permanently in browser storage.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="cfgModel">Model Name:</label>
+          <input type="text" id="cfgModel" class="form-control" placeholder="gpt-4o-mini, gpt-4o, gemini-1.5-pro, llama3">
+        </div>
+
+        <div class="form-group">
+          <label for="cfgBaseUrl">Custom Base URL (Ollama / Local LLM / vLLM):</label>
+          <input type="text" id="cfgBaseUrl" class="form-control" placeholder="http://localhost:11434/v1">
+        </div>
+
+        <div class="form-group">
+          <label for="cfgTemperature">Sampling Temperature: <span id="tempValueDisplay">0.2</span></label>
+          <input type="range" id="cfgTemperature" min="0.0" max="1.0" step="0.05" value="0.2" class="range-slider">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btnSaveSettings">Save Preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+    <div class="spinner-box">
+      <div class="spinner"></div>
+      <h3 id="loadingTitle">Processing...</h3>
+      <p id="loadingSubtitle">Consulting threat modeling engine...</p>
+    </div>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

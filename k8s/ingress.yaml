@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dragon-gpt-ingress
+  namespace: dragon-gpt
+  labels:
+    app.kubernetes.io/name: dragon-gpt
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "25m"
+spec:
+  rules:
+    - host: dragon-gpt.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dragon-gpt-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - dragon-gpt.example.com
+      secretName: dragon-gpt-tls
